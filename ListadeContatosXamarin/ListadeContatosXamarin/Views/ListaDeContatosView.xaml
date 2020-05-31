@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ListadeContatosXamarin.Views.ListaDeContatosView"
+             Title="Lista de Contatos">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="styleTelefonesContato">
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <RelativeLayout>
+            <StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+
+                <SearchBar x:Name="searchBar" 
+                           Text="{Binding Filtro}" 
+                           Margin="0,10,0,0" />
+
+                <ListView x:Name="listViewContatos"                          
+                          ItemsSource="{Binding listaDeContatos}"
+                          ItemSelected="OnItemSelect"
+                          SelectedItem="{Binding ContatoSelecionado, Mode=TwoWay}"                          
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10">
+                                    <Label Text="{Binding NomeContato}"
+                                           FontSize="Medium" 
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="{Binding Celular}" Style="{StaticResource styleTelefonesContato}" />
+                                    <Label Text="{Binding TelefoneFixo}" Style="{StaticResource styleTelefonesContato}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <Button Text="+"
+                    TextColor="White"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    BackgroundColor="#1E90FF"
+                    BorderRadius="100"
+                    HeightRequest="60"
+                    WidthRequest="60"
+                    Command="{Binding IrParaAdicionarContatoCommand}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-80}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-80}" />
+
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

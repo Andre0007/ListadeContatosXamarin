@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListadeContatosXamarin.Views.CadastroContatoView">
+    <StackLayout Padding="10">
+        <Entry Text="{Binding NomeContato}" 
+                Placeholder="Nome" />
+
+        <Entry Text="{Binding Celular}"
+                Placeholder="Celular" Keyboard="Telephone" />
+
+        <Entry Text="{Binding TelefoneFixo}"
+                Placeholder="Telefone" Keyboard="Telephone" />
+    </StackLayout>
+</ContentView>
